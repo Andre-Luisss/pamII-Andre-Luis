@@ -1,10 +1,10 @@
 import { StatusBar } from "expo-status-bar";
 import { Text, TextInput, View, StyleSheet, Animated, Pressable } from "react-native";
 import React, { useRef } from "react";
-import { useRouter } from "expo-router"; // Importe o useRouter
+import { useRouter } from "expo-router";
 
-export default function Index() {
-  const router = useRouter(); // Inicialize o router
+export default function ForgetPassword() {
+  const router = useRouter(); // Para navegação, se necessário
   const scale = useRef(new Animated.Value(1)).current;
 
   const onPressIn = () => {
@@ -44,11 +44,14 @@ export default function Index() {
         <Text
           style={{
             marginBottom: 23,
+            
           }}
         >
-          Login no Sistema
+         <b>Recuperação de Senha</b> 
         </Text>
         <StatusBar style="auto" />
+
+        {/* Campo de email */}
         <TextInput
           style={{
             borderWidth: 1,
@@ -60,29 +63,15 @@ export default function Index() {
             paddingBottom: 10,
             width: 200,
           }}
-          placeholder="Codigo de Aluno(a)"
+          placeholder="Código do Aluno(a)"
+          keyboardType="email-address" // Teclado otimizado para emails
+          autoCapitalize="none" // Evita a capitalização automática
         />
 
-        <TextInput
-          style={{
-            borderWidth: 1,
-            borderColor: '#000',
-            borderRadius: 5,
-            padding: 15,
-            marginBottom: 15,
-            paddingTop: 10,
-            paddingBottom: 10,
-            width: 200,
-          }}
-          placeholder="Password"
-          secureTextEntry={true}
-        />
-
-        {/* Botão de login com navegação para a página inicial */}
+        {/* Botão "Recuperar senha" */}
         <Pressable
           onPressIn={onPressIn}
           onPressOut={onPressOut}
-          onPress={() => router.push("/initial_page")} // Navega para a página inicial
         >
           <Animated.View
             style={[
@@ -90,15 +79,15 @@ export default function Index() {
               { transform: [{ scale }] },
             ]}
           >
-            <Text style={styles.loginButtonText}>Login</Text>
+            <Text style={styles.loginButtonText}>Recuperar senha</Text>
           </Animated.View>
         </Pressable>
       </View>
 
       <View style={{ marginTop: 20, alignItems: 'center' }}>
-        {/* Link para a tela de recuperação de senha */}
-        <Pressable onPress={() => router.push("/forget_password")}>
-          <Text style={{ color: '#1E3A5F', marginBottom: 10 }}>Esqueci a senha</Text>
+        {/* Link para voltar à tela de login */}
+        <Pressable onPress={() => router.back()}>
+          <Text style={{ color: '#1E3A5F' }}>Voltar ao login</Text>
         </Pressable>
       </View>
     </View>
