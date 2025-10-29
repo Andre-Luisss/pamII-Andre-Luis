@@ -1,0 +1,4 @@
+trabalho mobile
+agenda telefônica
+guardar acessos do banco em .env
+utilizar documentação do expo
